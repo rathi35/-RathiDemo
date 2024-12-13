@@ -21,7 +21,8 @@
 		8A5DCC6E2D0AED0700797A8A /* CryptoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC6D2D0AED0700797A8A /* CryptoTableViewCell.swift */; };
 		8A5DCC702D0AEF0D00797A8A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC6F2D0AEF0D00797A8A /* UIColor+Extension.swift */; };
 		8A5DCC722D0B134B00797A8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A5DCC712D0B134B00797A8A /* Assets.xcassets */; };
-		8A9EC0882D0AE4DF009AA2AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A9EC0862D0AE4DF009AA2AB /* Main.storyboard */; };
+		8A5DCC802D0C222000797A8A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC7F2D0C222000797A8A /* Constants.swift */; };
+		8A5DCC862D0C228B00797A8A /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC832D0C228B00797A8A /* APIRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +61,8 @@
 		8A5DCC6D2D0AED0700797A8A /* CryptoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTableViewCell.swift; sourceTree = "<group>"; };
 		8A5DCC6F2D0AEF0D00797A8A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8A5DCC712D0B134B00797A8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8A9EC0872D0AE4DF009AA2AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8A5DCC7F2D0C222000797A8A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8A5DCC832D0C228B00797A8A /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,16 +113,9 @@
 		8A1A7C7E2D0AB99C006524F0 /* RathiDemo */ = {
 			isa = PBXGroup;
 			children = (
-				8A1A7C7F2D0AB99C006524F0 /* AppDelegate.swift */,
-				8A1A7C812D0AB99C006524F0 /* SceneDelegate.swift */,
-				8A1A7C8D2D0AB99C006524F0 /* Info.plist */,
-				8A5DCC732D0C1E9800797A8A /* Models */,
-				8A5DCC742D0C1EA200797A8A /* ViewModels */,
-				8A5DCC752D0C1EAF00797A8A /* Service */,
-				8A5DCC762D0C1EB700797A8A /* View controllers */,
-				8A5DCC772D0C1ED500797A8A /* Views */,
+				8A5DCC7A2D0C219F00797A8A /* Supporting Files */,
+				8A5DCC7D2D0C21FC00797A8A /* Source */,
 				8A5DCC792D0C1EEF00797A8A /* Resource */,
-				8A5DCC782D0C1EDE00797A8A /* Extension */,
 			);
 			path = RathiDemo;
 			sourceTree = "<group>";
@@ -162,17 +157,18 @@
 		8A5DCC752D0C1EAF00797A8A /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				8A5DCC832D0C228B00797A8A /* APIRequest.swift */,
 				8A5DCC672D0ADF7100797A8A /* CryptoService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
 		};
-		8A5DCC762D0C1EB700797A8A /* View controllers */ = {
+		8A5DCC762D0C1EB700797A8A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				8A5DCC6B2D0AE06900797A8A /* CryptoListViewController.swift */,
 			);
-			path = "View controllers";
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		8A5DCC772D0C1ED500797A8A /* Views */ = {
@@ -194,11 +190,58 @@
 		8A5DCC792D0C1EEF00797A8A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				8A5DCC712D0B134B00797A8A /* Assets.xcassets */,
-				8A9EC0862D0AE4DF009AA2AB /* Main.storyboard */,
-				8A1A7C8A2D0AB99C006524F0 /* LaunchScreen.storyboard */,
+				8A5DCC7B2D0C21C800797A8A /* Assets.xcassets */,
+				8A5DCC7C2D0C21DA00797A8A /* Storyboards */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		8A5DCC7A2D0C219F00797A8A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8A1A7C7F2D0AB99C006524F0 /* AppDelegate.swift */,
+				8A1A7C812D0AB99C006524F0 /* SceneDelegate.swift */,
+				8A1A7C8D2D0AB99C006524F0 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8A5DCC7B2D0C21C800797A8A /* Assets.xcassets */ = {
+			isa = PBXGroup;
+			children = (
+				8A5DCC712D0B134B00797A8A /* Assets.xcassets */,
+			);
+			path = Assets.xcassets;
+			sourceTree = "<group>";
+		};
+		8A5DCC7C2D0C21DA00797A8A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8A1A7C8A2D0AB99C006524F0 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		8A5DCC7D2D0C21FC00797A8A /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				8A5DCC7E2D0C221400797A8A /* Constants */,
+				8A5DCC782D0C1EDE00797A8A /* Extension */,
+				8A5DCC732D0C1E9800797A8A /* Models */,
+				8A5DCC742D0C1EA200797A8A /* ViewModels */,
+				8A5DCC752D0C1EAF00797A8A /* Service */,
+				8A5DCC762D0C1EB700797A8A /* Controller */,
+				8A5DCC772D0C1ED500797A8A /* Views */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		8A5DCC7E2D0C221400797A8A /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				8A5DCC7F2D0C222000797A8A /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,7 +348,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A9EC0882D0AE4DF009AA2AB /* Main.storyboard in Resources */,
 				8A5DCC722D0B134B00797A8A /* Assets.xcassets in Resources */,
 				8A1A7C8C2D0AB99C006524F0 /* Base in Resources */,
 			);
@@ -340,6 +382,8 @@
 				8A1A7C822D0AB99C006524F0 /* SceneDelegate.swift in Sources */,
 				8A5DCC6E2D0AED0700797A8A /* CryptoTableViewCell.swift in Sources */,
 				8A5DCC702D0AEF0D00797A8A /* UIColor+Extension.swift in Sources */,
+				8A5DCC862D0C228B00797A8A /* APIRequest.swift in Sources */,
+				8A5DCC802D0C222000797A8A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,14 +427,6 @@
 				8A1A7C8B2D0AB99C006524F0 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		8A9EC0862D0AE4DF009AA2AB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8A9EC0872D0AE4DF009AA2AB /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -525,10 +561,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RathiDemo/Info.plist;
+				INFOPLIST_FILE = "RathiDemo/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -556,10 +592,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RathiDemo/Info.plist;
+				INFOPLIST_FILE = "RathiDemo/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

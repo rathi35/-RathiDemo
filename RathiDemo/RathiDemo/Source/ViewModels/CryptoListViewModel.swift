@@ -18,7 +18,7 @@ class CryptoListViewModel {
     
     /// Fetch cryptos from the API
     func fetchCryptos() {
-        cryptoService.fetchCoins { [weak self] result in
+        cryptoService.fetchCoins(request: .crypoList) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let coins):
@@ -37,7 +37,7 @@ class CryptoListViewModel {
     ///   - isActive: Show only active cryptos if true
     ///   - isNew: Show only new cryptos if true
     ///   - type: Filter by type (e.g., "coin", "token")
-    func applyFilters(isActive: Bool? = nil, isNew: Bool? = nil, type: String? = nil) {
+    func applyFilters(isActive: Bool? = nil, isNew: Bool? = nil, type: FilterType? = nil) {
         filteredCryptos = cryptos.filter { crypto in
             var matches = true
             if let isActive = isActive {
@@ -47,7 +47,7 @@ class CryptoListViewModel {
                 matches = matches && crypto.isNew == isNew
             }
             if let type = type {
-                matches = matches && crypto.type == type
+                matches = matches && crypto.type == type.rawValue
             }
             return matches
         }
