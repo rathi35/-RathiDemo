@@ -15,12 +15,27 @@ class CryptoListViewController: UIViewController {
     private let mainStackView = UIStackView()
     private let filterView = UIStackView()
     private var isSearchActive = false
+
+    private lazy var activeFilterButton: UIButton = createFilterButton(filterType: .activeCoins)
+    private lazy var inactiveFilterButton: UIButton = createFilterButton(filterType: .inactiveCoins)
+    private lazy var tokenFilterButton: UIButton = createFilterButton(filterType: .onlyTokens)
+    private lazy var coinFilterButton: UIButton = createFilterButton(filterType: .onlyCoins)
+    private lazy var newFilterButton: UIButton = createFilterButton(filterType: .newCoins)
     
-    private lazy var activeFilterButton: UIButton = createFilterButton(title: UIStrings.activeCoins, isActive: true)
-    private lazy var inactiveFilterButton: UIButton = createFilterButton(title: UIStrings.inactiveCoins, isActive: false)
-    private lazy var tokenFilterButton: UIButton = createFilterButton(title: UIStrings.onlyTokens, filterType: .token)
-    private lazy var coinFilterButton: UIButton = createFilterButton(title: UIStrings.onlyCoins, filterType: .coin)
-    private lazy var newFilterButton: UIButton = createFilterButton(title: UIStrings.newCoins)
+    private let emptyStateView: UIView = {
+        let view = UIView()
+        let messageLabel = UILabel()
+        messageLabel.text = "No results found!"
+        messageLabel.textAlignment = .center
+        messageLabel.font = UIFont.systemFont(ofSize: 16)
+        messageLabel.textColor = .gray
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(messageLabel)
+        messageLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        messageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        return view
+    }()
     
     init(viewModel: CryptoListViewModel) {
         self.viewModel = viewModel
@@ -78,6 +93,7 @@ private extension CryptoListViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
+        tableView.accessibilityLabel = "CryptoTableView"
         tableView.register(CryptoTableViewCell.self, forCellReuseIdentifier: "CryptoCell")
         
         mainStackView.addArrangedSubview(searchBar)
@@ -121,6 +137,7 @@ private extension CryptoListViewController {
         filterView.addArrangedSubview(filterView2)
     }
     
+    
     func setupActivityIndicator() {
         view.addSubview(activityIndicator)
         activityIndicator.center = view.center
@@ -132,6 +149,13 @@ private extension CryptoListViewController {
     func setupBindings() {
         viewModel.onUpdate = { [weak self] in
             self?.activityIndicator.stopAnimating()
+            
+            if self?.viewModel.numberOfRows() == 0 {
+                self?.tableView.backgroundView = self?.emptyStateView
+
+            } else {
+                self?.tableView.backgroundView = nil
+            }
             self?.tableView.reloadData()
         }
         
@@ -144,21 +168,21 @@ private extension CryptoListViewController {
     }
     
     // MARK: - Filter Button Setup
-    func createFilterButton(title: String, filterType: FilterType? = nil, isActive: Bool? = nil) -> UIButton {
+    func createFilterButton(filterType: FilterType) -> UIButton {
         var config = UIButton.Configuration.filled()
-        config.attributedTitle = AttributedString(title, attributes: AttributeContainer([.font: UIFont.systemFont(ofSize: 12)]))
+        config.attributedTitle = AttributedString(filterType.rawValue, attributes: AttributeContainer([.font: UIFont.systemFont(ofSize: 12)]))
         config.baseForegroundColor = .black
         config.baseBackgroundColor = UIColor(hex: "#D1D1D1")
         config.imagePadding = 2
-        
-        let button = UIButton(configuration: config, primaryAction: createFilterButtonAction(filterType: filterType, isActive: isActive))
+        let button = UIButton(configuration: config, primaryAction: createFilterButtonAction(filterType: filterType))
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
+        button.accessibilityIdentifier = "selected"
         return button
     }
     
     // MARK: - Filter button Action
-    func createFilterButtonAction(filterType: FilterType?, isActive: Bool?) -> UIAction {
+    func createFilterButtonAction(filterType: FilterType) -> UIAction {
         return UIAction { [weak self] action in
             guard let self = self, let sender = action.sender as? UIButton else { return }
             self.activityIndicator.startAnimating()
@@ -173,14 +197,12 @@ private extension CryptoListViewController {
                 sender.backgroundColor = UIColor(hex: "#D1D1D1")
             }
             
-            // Apply filters based on button type
-            if let filterType = filterType {
-                self.viewModel.applyFilters(type: isButtonSelected ? filterType : nil)
-            } else if let isActive = isActive {
-                self.viewModel.applyFilters(isActive: isButtonSelected ? isActive : nil)
+            if viewModel.selectedFilters.contains(filterType) {
+                viewModel.selectedFilters.removeAll{ $0 == filterType }
             } else {
-                self.viewModel.applyFilters(isNew: isButtonSelected ? true : nil)
+                viewModel.selectedFilters.append(filterType)
             }
+            viewModel.applyFilters()
         }
     }
     

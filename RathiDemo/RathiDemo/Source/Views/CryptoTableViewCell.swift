@@ -54,7 +54,9 @@ class CryptoTableViewCell: UITableViewCell {
     
     func configure(with crypto: Crypto) {
         nameLabel.text = crypto.name
+        nameLabel.accessibilityIdentifier = "CryptoNameLabel-\(crypto.name)"
         symbolLabel.text = crypto.symbol
+        symbolLabel.accessibilityLabel = "CryptoNameLabel-\(crypto.symbol)"
         if !crypto.isActive {
             statusImageView.image = UIImage(named: "Inactive")
         } else if crypto.type == "token" {
@@ -64,6 +66,8 @@ class CryptoTableViewCell: UITableViewCell {
         }
         if crypto.isNew {
             newTagImageView.image = UIImage(named: "new_tag")
+        } else {
+            newTagImageView.image = nil
         }
     }
 }

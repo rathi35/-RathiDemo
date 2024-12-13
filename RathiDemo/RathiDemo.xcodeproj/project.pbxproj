@@ -16,13 +16,14 @@
 		8A5DCC642D0ADE2100797A8A /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC632D0ADE2100797A8A /* Crypto.swift */; };
 		8A5DCC662D0ADE4900797A8A /* CryptoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC652D0ADE4900797A8A /* CryptoListViewModel.swift */; };
 		8A5DCC682D0ADF7100797A8A /* CryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC672D0ADF7100797A8A /* CryptoService.swift */; };
-		8A5DCC6A2D0AE01B00797A8A /* CryptoListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC692D0AE01B00797A8A /* CryptoListViewModelTests.swift */; };
 		8A5DCC6C2D0AE06900797A8A /* CryptoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC6B2D0AE06900797A8A /* CryptoListViewController.swift */; };
 		8A5DCC6E2D0AED0700797A8A /* CryptoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC6D2D0AED0700797A8A /* CryptoTableViewCell.swift */; };
 		8A5DCC702D0AEF0D00797A8A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC6F2D0AEF0D00797A8A /* UIColor+Extension.swift */; };
 		8A5DCC722D0B134B00797A8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A5DCC712D0B134B00797A8A /* Assets.xcassets */; };
 		8A5DCC802D0C222000797A8A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC7F2D0C222000797A8A /* Constants.swift */; };
 		8A5DCC862D0C228B00797A8A /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC832D0C228B00797A8A /* APIRequest.swift */; };
+		8A5DCC882D0C2A6B00797A8A /* MockCryptoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5DCC872D0C2A6B00797A8A /* MockCryptoService.swift */; };
+		8A5DCC902D0C2E6B00797A8A /* mockCryptos.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A5DCC8A2D0C2D0B00797A8A /* mockCryptos.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,13 +57,14 @@
 		8A5DCC632D0ADE2100797A8A /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		8A5DCC652D0ADE4900797A8A /* CryptoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListViewModel.swift; sourceTree = "<group>"; };
 		8A5DCC672D0ADF7100797A8A /* CryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoService.swift; sourceTree = "<group>"; };
-		8A5DCC692D0AE01B00797A8A /* CryptoListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListViewModelTests.swift; sourceTree = "<group>"; };
 		8A5DCC6B2D0AE06900797A8A /* CryptoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListViewController.swift; sourceTree = "<group>"; };
 		8A5DCC6D2D0AED0700797A8A /* CryptoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTableViewCell.swift; sourceTree = "<group>"; };
 		8A5DCC6F2D0AEF0D00797A8A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8A5DCC712D0B134B00797A8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A5DCC7F2D0C222000797A8A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8A5DCC832D0C228B00797A8A /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		8A5DCC872D0C2A6B00797A8A /* MockCryptoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCryptoService.swift; sourceTree = "<group>"; };
+		8A5DCC8A2D0C2D0B00797A8A /* mockCryptos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mockCryptos.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +125,9 @@
 		8A1A7C952D0AB99C006524F0 /* RathiDemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				8A5DCC912D0C2E9B00797A8A /* Mock Service */,
+				8A5DCC8C2D0C2D0B00797A8A /* Mock response */,
 				8A1A7C962D0AB99C006524F0 /* RathiDemoTests.swift */,
-				8A5DCC692D0AE01B00797A8A /* CryptoListViewModelTests.swift */,
 			);
 			path = RathiDemoTests;
 			sourceTree = "<group>";
@@ -244,6 +247,22 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		8A5DCC8C2D0C2D0B00797A8A /* Mock response */ = {
+			isa = PBXGroup;
+			children = (
+				8A5DCC8A2D0C2D0B00797A8A /* mockCryptos.json */,
+			);
+			path = "Mock response";
+			sourceTree = "<group>";
+		};
+		8A5DCC912D0C2E9B00797A8A /* Mock Service */ = {
+			isa = PBXGroup;
+			children = (
+				8A5DCC872D0C2A6B00797A8A /* MockCryptoService.swift */,
+			);
+			path = "Mock Service";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -357,6 +376,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A5DCC902D0C2E6B00797A8A /* mockCryptos.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,8 +411,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A5DCC882D0C2A6B00797A8A /* MockCryptoService.swift in Sources */,
 				8A1A7C972D0AB99C006524F0 /* RathiDemoTests.swift in Sources */,
-				8A5DCC6A2D0AE01B00797A8A /* CryptoListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

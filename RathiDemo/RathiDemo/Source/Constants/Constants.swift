@@ -16,14 +16,13 @@ enum ScreenTitle {
 }
 
 enum UIStrings {
-    static let activeCoins = "Active Coins"
-    static let inactiveCoins = "Inactive Coins"
-    static let onlyTokens = "Only Tokens"
-    static let onlyCoins = "Only Coins"
-    static let newCoins = "New Coins"
     static let search = "Search"
 }
 
 enum FilterType: String {
-    case coin, token
+    case activeCoins = "Active Coins"
+    case inactiveCoins = "Inactive Coins"
+    case onlyTokens = "Only Tokens"
+    case onlyCoins = "Only Coins"
+    case newCoins = "New Coins"
 }

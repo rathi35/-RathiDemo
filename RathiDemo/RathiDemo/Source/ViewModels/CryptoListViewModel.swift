@@ -11,10 +11,17 @@ import Foundation
 class CryptoListViewModel {
     var cryptos: [Crypto] = []          // Original list of cryptocurrencies
     private var filteredCryptos: [Crypto] = [] // Filtered list of cryptocurrencies
-    private let cryptoService = CryptoService()
+    private let cryptoService: CryptoService
+    
+    var selectedFilters: [FilterType] = []
     
     var onUpdate: (() -> Void)?    // Callback to notify when data updates
     var onError: ((String) -> Void)? // Callback to notify when an error occurs
+    
+    
+    init(cryptoService: CryptoService) {
+          self.cryptoService = cryptoService
+      }
     
     /// Fetch cryptos from the API
     func fetchCryptos() {
@@ -37,17 +44,23 @@ class CryptoListViewModel {
     ///   - isActive: Show only active cryptos if true
     ///   - isNew: Show only new cryptos if true
     ///   - type: Filter by type (e.g., "coin", "token")
-    func applyFilters(isActive: Bool? = nil, isNew: Bool? = nil, type: FilterType? = nil) {
+    func applyFilters() {
         filteredCryptos = cryptos.filter { crypto in
             var matches = true
-            if let isActive = isActive {
-                matches = matches && crypto.isActive == isActive
+            if selectedFilters.contains(.activeCoins) {
+                matches = matches && crypto.isActive
             }
-            if let isNew = isNew {
-                matches = matches && crypto.isNew == isNew
+            if selectedFilters.contains(.inactiveCoins) {
+                matches = matches && !crypto.isActive
             }
-            if let type = type {
-                matches = matches && crypto.type == type.rawValue
+            if selectedFilters.contains(.newCoins) {
+                matches = matches && crypto.isNew
+            }
+            if selectedFilters.contains(.onlyCoins) {
+                matches = matches && crypto.type == "coin"
+            }
+            if selectedFilters.contains(.onlyTokens) {
+                matches = matches && crypto.type == "token"
             }
             return matches
         }
