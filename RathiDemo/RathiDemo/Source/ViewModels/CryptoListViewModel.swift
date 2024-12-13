@@ -60,7 +60,7 @@ class CryptoListViewModel {
         if query.isEmpty {
             filteredCryptos = cryptos
         } else {
-            filteredCryptos = filteredCryptos.filter {
+            filteredCryptos = cryptos.filter {
                 $0.name.localizedCaseInsensitiveContains(query) ||
                 $0.symbol.localizedCaseInsensitiveContains(query)
             }
