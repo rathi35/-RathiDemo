@@ -1,0 +1,26 @@
+# Xcode
+.DS_Store
+.idea/
+*.xcuserdata/
+*.xcworkspace/
+DerivedData/
+build/
+
+# User-specific files
+*.swp
+*.swo
+*.log
+
+# Settings
+.vscode/
+
+# Xcode Archive files
+*.ipa
+*.app.dSYM/
+*.ipa.dSYM/
+
+# xcresult (Xcode test results)
+*.xcresult/
+
+# Temporary files created by Xcode when opening project files
+*.moved-aside
